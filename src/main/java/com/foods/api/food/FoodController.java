@@ -2,6 +2,7 @@ package com.foods.api.food;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,8 +19,13 @@ public class FoodController {
     // POSTING DATA TO THE DB
     @PostMapping
 
-    public void createFood(@RequestBody FoodModel food){
-        foodservice.addFood(food);
+    // ResponseEntity is a powerful class provided by Spring that allows you to control the HTTP status code, headers, and body of the response.
+    public ResponseEntity <FoodResponse> createFood(@RequestBody FoodModel food){
+
+
+        FoodModel savedFood = foodservice.addFood(food);
+        FoodResponse response = new FoodResponse("Food added suucessfully", savedFood);
+        return ResponseEntity.ok(response);
     }
 
 

@@ -18,7 +18,7 @@ public class FoodService {
     }
 
     // POSTING DATA TO THE DB
-    public void addFood(FoodModel food) {
+    public FoodModel addFood(FoodModel food) {
 
         Optional<FoodModel> findFood = repository.findFoodByName(food.getName());
 
@@ -26,7 +26,7 @@ public class FoodService {
                throw new IllegalStateException("Food Already Exists");
         }
 
-        repository.save(food);
+        return repository.save(food);
     }
 
 
