@@ -4,6 +4,7 @@ package com.foods.api.food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,12 @@ public class FoodService {
         }
 
         return repository.save(food);
+    }
+
+    // GETTING ALL THE DATA FROM THE DB
+
+    public List<FoodModel> getAllFoods (){
+        return repository.findAll();
     }
 
 
