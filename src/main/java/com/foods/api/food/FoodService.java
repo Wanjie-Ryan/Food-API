@@ -1,6 +1,7 @@
 package com.foods.api.food;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,20 @@ public class FoodService {
         return repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new IllegalStateException("Food of Id " + id + " does not exist"));
     }
+
+    // UPDATING A FOOD BY ITS ID
+    @Transactional
+
+    public FoodModel updateFoodById(String id, FoodModel food){
+
+        Optional<FoodModel> checkFood = repository.findById(UUID.fromString(id));
+
+        if(!checkFood.isPresent()){
+            throw new IllegalStateException("Food of id " + id + " does not exist");
+        }
+
+    }
+
 
 
 
