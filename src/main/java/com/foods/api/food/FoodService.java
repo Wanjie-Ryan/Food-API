@@ -72,6 +72,24 @@ public class FoodService {
 
     }
 
+    // DELETING A FOOD BASED ON ITS ID
+
+    public FoodModel deleteFoodById(String id){
+
+        Optional <FoodModel> checkfood = repository.findById(UUID.fromString(id));
+
+        if(!checkfood.isPresent()){
+            throw new IllegalStateException("Food of id " +id+ " does not exist");
+        }
+
+        FoodModel foodToDelete = checkfood.get(); // store the food to be deleted
+        repository.deleteById(UUID.fromString(id));
+        return foodToDelete;
+
+    }
+
+
+
 
 
 }
