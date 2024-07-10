@@ -88,6 +88,16 @@ public class FoodController {
 
     }
 
+    @DeleteMapping(path ="{id}")
+
+    public ResponseEntity<FoodResponse> deleteFood(@PathVariable("id") String id){
+
+        FoodModel foods = foodservice.deleteFoodById(id);
+        FoodResponse response = new FoodResponse("Food of id " +id+ " has been deleted successfully", foods);
+        return ResponseEntity.ok(response);
+
+    }
+
 
 
 }
