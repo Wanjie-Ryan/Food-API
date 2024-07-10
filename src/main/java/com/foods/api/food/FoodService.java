@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -56,6 +57,17 @@ public class FoodService {
         if(!checkFood.isPresent()){
             throw new IllegalStateException("Food of id " + id + " does not exist");
         }
+
+        if(food.getName() !=null && food.getName().length() > 0 && !Objects.equals(checkFood.get().getName(), food.getName())){
+            checkFood.get().setName(food.getName());
+
+        }
+
+        if(food.getCountry() != null && food.getCountry().length() >0 && !Objects.equals(checkFood.get().getCountry(), food.getCountry())){
+            checkFood.get().setCountry(food.getCountry());
+        }
+
+        return repository.save(checkFood.get());
 
     }
 
