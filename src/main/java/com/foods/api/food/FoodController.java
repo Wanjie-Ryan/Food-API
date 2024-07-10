@@ -27,7 +27,7 @@ public class FoodController {
 
 
         FoodModel savedFood = foodservice.addFood(food);
-        FoodResponse response = new FoodResponse("Food added suucessfully", savedFood);
+        FoodResponse response = new FoodResponse("Food added successfully", savedFood);
         return ResponseEntity.ok(response);
     }
 
@@ -63,17 +63,5 @@ public class FoodController {
 
               return ResponseEntity.ok(responses);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
