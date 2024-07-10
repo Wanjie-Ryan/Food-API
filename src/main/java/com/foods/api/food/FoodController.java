@@ -1,6 +1,7 @@
 package com.foods.api.food;
 
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,6 +63,17 @@ public class FoodController {
         //In summary, the mapping process in your getAllFoods method is crucial for transforming FoodModel data into FoodResponse objects, ensuring that the API returns structured and meaningful responses to client requests. This approach enhances readability, maintainability, and consistency in your Spring Boot application.
 
               return ResponseEntity.ok(responses);
+    }
+
+    // GET A FOOD BY ITS ID
+    @GetMapping(path = "{id}")
+
+    public ResponseEntity <FoodResponse> getSingleFood (@PathVariable("id") String id){
+
+        FoodModel food = foodservice.getFoodById(id);
+        FoodResponse response = new FoodResponse("Food of id " +id + " is available", food);
+        return ResponseEntity.ok(response);
+
     }
 
 }
