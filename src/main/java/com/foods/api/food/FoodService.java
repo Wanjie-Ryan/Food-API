@@ -48,6 +48,7 @@ public class FoodService {
     }
 
     // UPDATING A FOOD BY ITS ID
+
     @Transactional
 
     public FoodModel updateFoodById(String id, FoodModel food){
@@ -70,10 +71,6 @@ public class FoodService {
         return repository.save(checkFood.get());
 
     }
-
-
-
-
 
 
 

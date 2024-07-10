@@ -76,4 +76,18 @@ public class FoodController {
 
     }
 
+    // UPDATING A FOOD BY ITS ID
+
+    @PutMapping(path = "{id}")
+
+    public ResponseEntity <FoodResponse> updateFood(@PathVariable("id") String id, @RequestBody FoodModel food){
+
+        FoodModel foods = foodservice.updateFoodById(id, food);
+        FoodResponse response = new FoodResponse("Food of id " +id+ " has been updated successfully", foods);
+        return ResponseEntity.ok(response);
+
+    }
+
+
+
 }
